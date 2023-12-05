@@ -39,16 +39,16 @@ def part2(input: Iterator[String]): List[Int] = {
 
   input
     .map: line =>
-      val matches = regex
-        .findAllMatchIn(line)
-        .map: m =>
-          translation
-            .get(m.matched)
-            .getOrElse(m.matched.toInt)
-        .toList
-      val firstDigit = matches.head
-      val lastDigit = matches.last
-      firstDigit * 10 + lastDigit
+      //This is required because of overlapping matches which are not matched by findAllMatchIn
+      val matches = line.tails.flatMap { i =>
+        regex
+          .findAllMatchIn(i)
+          .map: m =>
+            translation
+              .get(m.matched)
+              .getOrElse(m.matched.toInt)
+      }.toList
+      matches.head * 10 + matches.last
     .toList
 
 }
