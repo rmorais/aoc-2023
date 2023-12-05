@@ -4,7 +4,7 @@ import com.cabexas.part2
 
 // For more information on writing tests, see
 // https://scalameta.org/munit/docs/getting-started.html
-class MySuite extends munit.FunSuite {
+class Day1 extends munit.FunSuite {
 
   test("string only contains one digit") {
     val input = Iterator("one")
